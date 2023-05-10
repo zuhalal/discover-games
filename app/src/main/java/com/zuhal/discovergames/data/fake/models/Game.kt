@@ -24,7 +24,15 @@ data class Game(
 
 	@JsonProperty("background_image")
 	@field:SerializedName("background_image")
-	val backgroundImage: String? = null,
+	val backgroundImage: String,
+
+	@JsonProperty("ratings_count")
+	@field:SerializedName("ratings_count")
+	val ratingsCount: Int,
+
+	@JsonProperty("esrb_rating")
+	@field:SerializedName("esrb_rating")
+	val esrbRating: String,
 
 	@field:SerializedName("rating")
 	val rating: Double,

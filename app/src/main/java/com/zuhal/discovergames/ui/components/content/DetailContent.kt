@@ -39,13 +39,11 @@ fun DetailContent(
         modifier = modifier.verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        game.backgroundImage?.let {
-            ImageCoveredBlackGradient(
-                url = it,
-                contentDescription = stringResource(R.string.game_image_description),
-                height = if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) 280.dp else 400.dp
-            )
-        }
+        ImageCoveredBlackGradient(
+            url = game.backgroundImage,
+            contentDescription = stringResource(R.string.game_image_description),
+            height = if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) 280.dp else 400.dp
+        )
         Column(
             modifier = Modifier
                 .offset(y = (-48).dp)

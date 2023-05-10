@@ -24,7 +24,9 @@ class GameRepository private constructor(
                         released = it.released,
                         genres = it.genres,
                         rating = it.rating,
-                        description = it.description
+                        description = it.description,
+                        ratingsCount = it.ratingsCount,
+                        esrbRating = it.esrbRating
                     )
                 )
             }
