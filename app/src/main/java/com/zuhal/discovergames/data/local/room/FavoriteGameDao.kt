@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface FavoriteGameDao {
     @Query("SELECT * FROM favorite_game")
-    suspend fun getFavoriteGames(): Flow<List<FavoriteGameEntity>>
+    fun getFavoriteGames(): Flow<List<FavoriteGameEntity>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertOneFavoriteGame(favoriteGame: FavoriteGameEntity)

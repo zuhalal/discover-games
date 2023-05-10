@@ -35,7 +35,7 @@ class GameRepository private constructor(
         return flowOf(games)
     }
 
-    suspend fun getAllFavoriteGames() = dao.getFavoriteGames()
+    fun getAllFavoriteGames() = dao.getFavoriteGames()
 
     suspend fun setFavoriteGame(game: FavoriteGameEntity) = dao.insertOneFavoriteGame(game)
 
