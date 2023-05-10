@@ -19,6 +19,9 @@ data class Game(
 	@field:SerializedName("released")
 	val released: String,
 
+	@field:SerializedName("description")
+	val description: String,
+
 	@JsonProperty("background_image")
 	@field:SerializedName("background_image")
 	val backgroundImage: String? = null,
