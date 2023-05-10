@@ -39,11 +39,10 @@ const val jsonString = """
   {
     "id": 3328,
     "slug": "the-witcher-3-wild-hunt",
-    "name": "The Witcher 3: Wild Hunt",
+    "name": "The Witcher 3 Wild Hunt",
     "released": "2015-05-18",
     "background_image": "https://media.rawg.io/media/games/618/618c2031a07bbff6b4f611f10b6bcdbc.jpg",
     "rating": 4.66,
-    "ratings_count": 6008,
     "genres": [
       {
         "id": 4,

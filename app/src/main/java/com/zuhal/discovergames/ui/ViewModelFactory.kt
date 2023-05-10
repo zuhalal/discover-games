@@ -8,7 +8,7 @@ import com.zuhal.discovergames.di.Injection
 import com.zuhal.discovergames.ui.screen.favorite.FavoriteViewModel
 import com.zuhal.discovergames.ui.screen.home.HomeViewModel
 
-class ViewModelFactory private constructor(
+class ViewModelFactory(
     private val gameRepository: GameRepository,
 ) :
     ViewModelProvider.NewInstanceFactory() {
@@ -30,7 +30,7 @@ class ViewModelFactory private constructor(
         fun getInstance(context: Context): ViewModelFactory =
             instance ?: synchronized(this) {
                 instance ?: ViewModelFactory(
-                    Injection.provideGameRepository(context),
+                    Injection.provideRepository(context),
                 )
             }.also { instance = it }
     }

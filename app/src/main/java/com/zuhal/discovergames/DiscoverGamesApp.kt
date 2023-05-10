@@ -16,6 +16,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.zuhal.discovergames.ui.navigation.Screen
+import com.zuhal.discovergames.ui.screen.home.HomeScreen
 import com.zuhal.discovergames.ui.theme.DiscoverGamesTheme
 
 @Composable
@@ -34,21 +35,16 @@ fun DiscoverGamesApp(
             modifier = Modifier.padding(innerPadding)
         ) {
             composable(Screen.Home.route) {
-
+                HomeScreen()
             }
         }
     }
-}
-
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
 }
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     DiscoverGamesTheme {
-        Greeting("Android")
+        DiscoverGamesApp()
     }
 }

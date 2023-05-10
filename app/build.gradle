@@ -71,6 +71,7 @@ dependencies {
     // network
     implementation "com.squareup.retrofit2:converter-gson:2.9.0"
     implementation 'com.fasterxml.jackson.module:jackson-module-kotlin:2.12.1'
+    implementation "io.coil-kt:coil-compose:2.2.0"
 
     // database
     def room_version = "2.5.0"

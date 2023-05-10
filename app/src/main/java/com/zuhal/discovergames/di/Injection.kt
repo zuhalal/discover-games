@@ -6,7 +6,7 @@ import com.zuhal.discovergames.data.GameRepository
 import com.zuhal.discovergames.data.local.room.FavoriteGameDatabase
 
 object Injection {
-    fun provideGameRepository(context: Context): GameRepository {
+    fun provideRepository(context: Context): GameRepository {
         val database = FavoriteGameDatabase.getInstance(context)
         val dao = database.favoriteGameDao()
         return GameRepository.getInstance(dao)
