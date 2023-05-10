@@ -1,5 +1,6 @@
 package com.zuhal.discovergames.ui.components.content
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
@@ -15,21 +16,22 @@ import com.zuhal.discovergames.ui.theme.DiscoverGamesTheme
 @Composable
 fun HomeContent(
     games: List<Game>,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navigateToDetail: (Game) -> Unit,
 ) {
     LazyColumn(
         contentPadding = PaddingValues(28.dp),
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(24.dp),
     ) {
-        items(games) { data ->
+        items(games, key = { it.id }) { data ->
             GameItem(
                 image = data.backgroundImage ?: "",
                 name = data.name,
                 rating = data.rating,
-//                modifier = Modifier.clickable {
-//                    navigateToDetail(data.reward.id)
-//                }
+                modifier = Modifier.clickable {
+                    navigateToDetail(data)
+                }
             )
         }
     }

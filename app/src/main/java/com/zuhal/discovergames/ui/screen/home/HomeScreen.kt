@@ -5,6 +5,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.zuhal.discovergames.data.fake.models.Game
 import com.zuhal.discovergames.di.Injection
 import com.zuhal.discovergames.ui.ViewModelFactory
 import com.zuhal.discovergames.ui.common.UiState
@@ -16,6 +17,7 @@ fun HomeScreen(
     viewModel: HomeViewModel = viewModel(
         factory = ViewModelFactory(Injection.provideRepository(LocalContext.current))
     ),
+    navigateToDetail: (Game) -> Unit,
 ) {
     viewModel.uiState.collectAsState(initial = UiState.Loading).value.let { uiState ->
         when (uiState) {
@@ -26,6 +28,7 @@ fun HomeScreen(
                 HomeContent(
                     games = uiState.data,
                     modifier = modifier,
+                    navigateToDetail = navigateToDetail,
                 )
             }
             is UiState.Error -> {}

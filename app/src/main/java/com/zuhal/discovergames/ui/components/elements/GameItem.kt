@@ -51,9 +51,8 @@ fun GameItem(
                     text = name,
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis,
-                    style = MaterialTheme.typography.subtitle1.copy(
+                    style = MaterialTheme.typography.h6.copy(
                         fontWeight = FontWeight.ExtraBold,
-                        fontSize = 20.sp,
                     ),
                     modifier = Modifier.weight(if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) 9f else 4f)
                 )

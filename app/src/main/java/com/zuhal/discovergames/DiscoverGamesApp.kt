@@ -1,21 +1,22 @@
 package com.zuhal.discovergames
 
+import android.content.Context
+import android.content.Intent
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.zuhal.discovergames.data.fake.models.Game
 import com.zuhal.discovergames.ui.navigation.Screen
+import com.zuhal.discovergames.ui.screen.detail.DetailScreen
 import com.zuhal.discovergames.ui.screen.home.HomeScreen
 import com.zuhal.discovergames.ui.theme.DiscoverGamesTheme
 
@@ -35,10 +36,43 @@ fun DiscoverGamesApp(
             modifier = Modifier.padding(innerPadding)
         ) {
             composable(Screen.Home.route) {
-                HomeScreen()
+                HomeScreen(
+                    navigateToDetail = { game ->
+                        navBackStackEntry?.savedStateHandle?.set("game", game)
+                        navController.navigate(Screen.DetailReward.route)
+                    }
+                )
+            }
+
+            composable(
+                route = Screen.DetailReward.route,
+            ) {
+                val game = navController.previousBackStackEntry?.savedStateHandle?.get<Game>("game")
+                game?.let {
+                    val context = LocalContext.current
+
+                    DetailScreen(game, onShareButtonClicked = { slug ->
+                        shareGame(context, slug)
+                    })
+                }
             }
         }
     }
+}
+
+private fun shareGame(context: Context, slug: String) {
+    val intent = Intent(Intent.ACTION_SEND).apply {
+        type = "text/plain"
+        putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.share_game))
+        putExtra(Intent.EXTRA_TEXT, slug)
+    }
+
+    context.startActivity(
+        Intent.createChooser(
+            intent,
+            context.getString(R.string.share_game)
+        )
+    )
 }
 
 @Preview(showBackground = true)
