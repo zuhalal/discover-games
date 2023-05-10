@@ -1,4 +1,4 @@
-package com.zuhal.discovergames.data.model
+package com.zuhal.discovergames.data.fake.models
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName

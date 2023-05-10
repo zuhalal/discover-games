@@ -1,4 +1,4 @@
-package com.zuhal.discovergames.data.model
+package com.zuhal.discovergames.data.fake.models
 
 import kotlinx.parcelize.Parcelize
 import android.os.Parcelable

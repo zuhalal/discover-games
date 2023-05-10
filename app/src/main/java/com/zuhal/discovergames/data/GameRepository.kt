@@ -1,11 +1,15 @@
 package com.zuhal.discovergames.data
 
-import com.zuhal.discovergames.data.model.FakeGameDataSource
-import com.zuhal.discovergames.data.model.Game
+import com.zuhal.discovergames.data.fake.FakeGameDataSource
+import com.zuhal.discovergames.data.fake.models.Game
+import com.zuhal.discovergames.data.local.entity.FavoriteGameEntity
+import com.zuhal.discovergames.data.local.room.FavoriteGameDao
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 
-class GameRepository {
+class GameRepository private constructor(
+    private val dao: FavoriteGameDao,
+){
     private val games = mutableListOf<Game>()
 
     init {
@@ -29,5 +33,22 @@ class GameRepository {
 
     fun getAllGames(): Flow<List<Game>> {
         return flowOf(games)
+    }
+
+    suspend fun getAllFavoriteGames() = dao.getFavoriteGames()
+
+    suspend fun setFavoriteGame(game: FavoriteGameEntity) = dao.insertOneFavoriteGame(game)
+
+    suspend fun removeFavoriteGame(id: Int) = dao.deleteFavoriteGame(id)
+
+    companion object {
+        @Volatile
+        private var instance: GameRepository? = null
+        fun getInstance(
+            dao: FavoriteGameDao,
+        ): GameRepository =
+            instance ?: synchronized(this) {
+                instance ?: GameRepository(dao)
+            }.also { instance = it }
     }
 }

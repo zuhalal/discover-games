@@ -1,7 +1,8 @@
-package com.zuhal.discovergames.data.model
+package com.zuhal.discovergames.data.fake
 
 import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import com.zuhal.discovergames.data.fake.models.Game
 
 val mapper = jacksonObjectMapper()
 
@@ -22,7 +23,6 @@ const val jsonString = """
     "released": "2013-09-17",
     "background_image": "https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg",
     "rating": 4.47,
-    "ratings_count": 6314,
     "genres": [
       {
         "id": 4,
