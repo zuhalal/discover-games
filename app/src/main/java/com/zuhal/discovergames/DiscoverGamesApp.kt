@@ -44,7 +44,7 @@ fun DiscoverGamesApp(
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
-    DiscoverGamesTheme {
+    DiscoverGamesTheme(darkTheme = true) {
         DiscoverGamesApp()
     }
 }

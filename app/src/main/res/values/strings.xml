@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Discover Games</string>
+    <string name="game_image_description">Game Image</string>
+    <string name="rating">Rating</string>
 </resources>

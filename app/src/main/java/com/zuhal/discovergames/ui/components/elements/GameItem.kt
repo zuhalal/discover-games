@@ -2,17 +2,22 @@ package com.zuhal.discovergames.ui.components.elements
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import com.zuhal.discovergames.R
 
 @Composable
 fun GameItem(
@@ -25,31 +30,44 @@ fun GameItem(
         Column {
             AsyncImage(
                 model = image,
-                contentDescription = "Game Image",
+                contentDescription = stringResource(R.string.game_image_description),
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
-                    .height(120.dp)
+                    .height(200.dp)
             )
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.padding(8.dp)
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp)
             ) {
                 Text(
-                    modifier = Modifier.weight(4f),
                     text = name,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                     style = MaterialTheme.typography.subtitle1.copy(
                         fontWeight = FontWeight.ExtraBold,
+                        fontSize = 20.sp,
                     )
                 )
-                Text(
-                    modifier = Modifier.weight(1f),
-                    text = rating.toString(),
-                    style = MaterialTheme.typography.body2.copy(
-                        fontSize = 12.sp
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(4.dp)
+                ) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_baseline_star_24),
+                        contentDescription = stringResource(
+                            R.string.rating
+                        ),
+                        tint = Color.Yellow
                     )
-                )
+                    Text(
+                        text = rating.toString(),
+                        style = MaterialTheme.typography.body2.copy(
+                            fontSize = 16.sp
+                        )
+                    )
+                }
             }
         }
     }
