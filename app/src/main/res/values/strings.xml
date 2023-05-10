@@ -5,4 +5,6 @@
     <string name="share">Share</string>
     <string name="share_game">Share Game</string>
     <string name="share_url">https://rawg.io/games/</string>
+    <string name="show_less">Show Less</string>
+    <string name="show_more">Show More</string>
 </resources>
