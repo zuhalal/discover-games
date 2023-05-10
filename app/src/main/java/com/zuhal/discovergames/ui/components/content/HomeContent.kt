@@ -30,7 +30,6 @@ fun HomeContent(
                 image = data.backgroundImage ?: "",
                 name = data.name,
                 rating = data.rating,
-                ratingsCount = 0
 //                modifier = Modifier.clickable {
 //                    navigateToDetail(data.reward.id)
 //                }
