@@ -45,7 +45,6 @@ fun DetailContent(
         )
         Column(
             modifier = Modifier
-                .offset(y = (-48).dp)
                 .padding(horizontal = 12.dp, vertical = 16.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(12.dp),
