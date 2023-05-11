@@ -1,6 +1,5 @@
 package com.zuhal.discovergames.data
 
-import androidx.compose.ui.text.substring
 import com.zuhal.discovergames.data.fake.FakeGameDataSource
 import com.zuhal.discovergames.data.fake.models.Game
 import com.zuhal.discovergames.data.local.entity.FavoriteGameEntity
@@ -43,6 +42,8 @@ class GameRepository private constructor(
     }
 
     fun getAllFavoriteGames() = dao.getFavoriteGames()
+
+    fun isGameFavorite(id: Int) = dao.isGameFavorite(id)
 
     suspend fun setFavoriteGame(game: FavoriteGameEntity) = dao.insertOneFavoriteGame(game)
 

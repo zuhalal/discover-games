@@ -9,6 +9,9 @@ interface FavoriteGameDao {
     @Query("SELECT * FROM favorite_game")
     fun getFavoriteGames(): Flow<List<FavoriteGameEntity>>
 
+    @Query("SELECT EXISTS(SELECT * FROM favorite_game WHERE id = :id)")
+    fun isGameFavorite(id: Int): Flow<Boolean>
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertOneFavoriteGame(favoriteGame: FavoriteGameEntity)
 
