@@ -20,7 +20,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import com.zuhal.discovergames.R
-import com.zuhal.discovergames.data.fake.models.Game
+import com.zuhal.discovergames.data.fake.models.Genre
 import com.zuhal.discovergames.ui.components.elements.AdditionalGameDetail
 import com.zuhal.discovergames.ui.components.elements.ExpandableText
 import com.zuhal.discovergames.ui.components.elements.ImageCoveredBlackGradient
@@ -28,7 +28,16 @@ import com.zuhal.discovergames.ui.screen.detail.DetailViewModel
 
 @Composable
 fun DetailContent(
-    game: Game,
+    id: Int,
+    slug: String,
+    name: String,
+    backgroundImage: String,
+    genres: List<Genre>,
+    description: String,
+    released: String,
+    ratingsCount: Int,
+    rating: Double,
+    esrbRating: String,
     modifier: Modifier = Modifier,
     onShareButtonClicked: (String) -> Unit,
     isFavorite: Boolean = false,
@@ -42,7 +51,7 @@ fun DetailContent(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         ImageCoveredBlackGradient(
-            url = game.backgroundImage,
+            url = backgroundImage,
             contentDescription = stringResource(R.string.game_image_description),
             height = if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) 280.dp else 400.dp
         )
@@ -53,7 +62,7 @@ fun DetailContent(
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
             Text(
-                text = game.name, style = MaterialTheme.typography.h4.copy(
+                text = name, style = MaterialTheme.typography.h4.copy(
                     textAlign = TextAlign.Center,
                     fontWeight = FontWeight.Bold
                 )
@@ -62,14 +71,14 @@ fun DetailContent(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                itemsIndexed(game.genres, key = { _, genre -> genre.id }) { index, genre ->
+                itemsIndexed(genres, key = { _, genre -> genre.id }) { index, genre ->
                     Text(
                         text = genre.name, style = MaterialTheme.typography.subtitle1.copy(
                             fontWeight = FontWeight.Bold,
                             textDecoration = TextDecoration.Underline
                         )
                     )
-                    if (index != game.genres.size - 1) {
+                    if (index != genres.size - 1) {
                         Text(
                             text = ",",
                             style = MaterialTheme.typography.subtitle1.copy(
@@ -80,20 +89,20 @@ fun DetailContent(
                 }
             }
             ExpandableText(
-                text = game.description,
+                text = description,
                 maxLines = 3
             )
             AdditionalGameDetail(
-                released = game.released,
-                rating = game.rating,
-                ratingsCount = game.ratingsCount,
-                esrbRating = game.esrbRating,
+                released = released,
+                rating = rating,
+                ratingsCount = ratingsCount,
+                esrbRating = esrbRating,
                 modifier = Modifier.height(100.dp)
             )
             Button(
                 onClick = {
-                    if (!isFavorite) viewModel.setIsFavorite(game.id) else viewModel.removeFromFavorite(
-                        game.id
+                    if (!isFavorite) viewModel.setIsFavorite(id) else viewModel.removeFromFavorite(
+                        id
                     )
                 },
                 modifier = modifier
@@ -111,7 +120,7 @@ fun DetailContent(
                 )
             }
             Button(
-                onClick = { onShareButtonClicked("$shareUrl${game.slug}") },
+                onClick = { onShareButtonClicked("$shareUrl${slug}") },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(48.dp),

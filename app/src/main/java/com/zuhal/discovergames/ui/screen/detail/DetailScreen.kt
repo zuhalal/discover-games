@@ -27,7 +27,16 @@ fun DetailScreen(
             }
             is UiState.Success -> {
                 DetailContent(
-                    game = game,
+                    id = game.id,
+                    slug = game.slug,
+                    esrbRating = game.esrbRating,
+                    ratingsCount = game.ratingsCount,
+                    backgroundImage = game.backgroundImage,
+                    description = game.description,
+                    genres = game.genres,
+                    name = game.name,
+                    rating = game.rating,
+                    released = game.released,
                     modifier = modifier,
                     onShareButtonClicked = onShareButtonClicked,
                     isFavorite = isFavorite.data,
