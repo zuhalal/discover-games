@@ -1,5 +1,6 @@
 package com.zuhal.discovergames.ui.components.elements
 
+import android.content.Context
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
@@ -14,6 +15,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -23,6 +26,7 @@ import com.zuhal.discovergames.R
 
 @Composable
 fun GameItem(
+    context: Context,
     image: String,
     name: String,
     rating: Double,
@@ -31,7 +35,9 @@ fun GameItem(
     // Fetching current app configuration
     val configuration = LocalConfiguration.current
 
-    Card(modifier = modifier, elevation = 20.dp) {
+    Card(modifier = modifier.semantics(mergeDescendants = true) {
+        contentDescription = context.getString(R.string.game_item_content_desc)
+    }, elevation = 20.dp) {
         Column {
             AsyncImage(
                 model = image,

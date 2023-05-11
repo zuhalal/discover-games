@@ -30,4 +30,6 @@
     <string name="genre_row_content_desc">Genre row in game details</string>
     <string name="about_us_name_content_desc">Name of the app creator, Zuhal \'Alimul Hadi</string>
     <string name="about_us_email_content_desc">Email of the creator app, zuhalalimulhadi19@gmail.com</string>
+    <string name="search_bar">Search bar</string>
+    <string name="game_item_content_desc">One of the game item in the list on the home page</string>
 </resources>
