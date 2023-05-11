@@ -23,6 +23,7 @@ import com.zuhal.discovergames.R
 import com.zuhal.discovergames.data.fake.models.Genre
 import com.zuhal.discovergames.ui.components.elements.AdditionalGameDetail
 import com.zuhal.discovergames.ui.components.elements.ExpandableText
+import com.zuhal.discovergames.ui.components.elements.GameDetailGenreRow
 import com.zuhal.discovergames.ui.components.elements.ImageCoveredBlackGradient
 import com.zuhal.discovergames.ui.screen.detail.DetailViewModel
 
@@ -67,27 +68,7 @@ fun DetailContent(
                     fontWeight = FontWeight.Bold
                 )
             )
-            LazyRow(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                itemsIndexed(genres, key = { _, genre -> genre.id }) { index, genre ->
-                    Text(
-                        text = genre.name, style = MaterialTheme.typography.subtitle1.copy(
-                            fontWeight = FontWeight.Bold,
-                            textDecoration = TextDecoration.Underline
-                        )
-                    )
-                    if (index != genres.size - 1) {
-                        Text(
-                            text = ",",
-                            style = MaterialTheme.typography.subtitle1.copy(
-                                fontWeight = FontWeight.Bold
-                            )
-                        )
-                    }
-                }
-            }
+            GameDetailGenreRow(genres = genres)
             ExpandableText(
                 text = description,
                 maxLines = 3
