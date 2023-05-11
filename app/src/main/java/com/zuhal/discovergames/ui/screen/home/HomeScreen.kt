@@ -2,6 +2,7 @@ package com.zuhal.discovergames.ui.screen.home
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -19,16 +20,23 @@ fun HomeScreen(
     ),
     navigateToDetail: (Game) -> Unit,
 ) {
+    val query by viewModel.query
     viewModel.uiState.collectAsState(initial = UiState.Loading).value.let { uiState ->
         when (uiState) {
             is UiState.Loading -> {
-                viewModel.getAllGames()
+                if (query !== "") {
+                    viewModel.searchGames(query)
+                } else {
+                    viewModel.getAllGames()
+                }
             }
             is UiState.Success -> {
                 HomeContent(
                     games = uiState.data,
                     modifier = modifier,
                     navigateToDetail = navigateToDetail,
+                    query = query,
+                    onQueryChange = viewModel::searchGames
                 )
             }
             is UiState.Error -> {}

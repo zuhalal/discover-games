@@ -1,5 +1,6 @@
 package com.zuhal.discovergames.data
 
+import androidx.compose.ui.text.substring
 import com.zuhal.discovergames.data.fake.FakeGameDataSource
 import com.zuhal.discovergames.data.fake.models.Game
 import com.zuhal.discovergames.data.local.entity.FavoriteGameEntity
@@ -9,7 +10,7 @@ import kotlinx.coroutines.flow.flowOf
 
 class GameRepository private constructor(
     private val dao: FavoriteGameDao,
-){
+) {
     private val games = mutableListOf<Game>()
 
     init {
@@ -35,6 +36,10 @@ class GameRepository private constructor(
 
     fun getAllGames(): Flow<List<Game>> {
         return flowOf(games)
+    }
+
+    fun searchGames(query: String): Flow<List<Game>> {
+        return flowOf(games.filter { it.name.contains(query, ignoreCase = true) })
     }
 
     fun getAllFavoriteGames() = dao.getFavoriteGames()
