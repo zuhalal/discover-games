@@ -20,4 +20,8 @@
     <string name="add_to_favorite">Add to Favorite</string>
     <string name="remove_from_favorite">Remove from Favorite</string>
     <string name="profile_picture_link">https://avatars.githubusercontent.com/u/74417769?v=4</string>
+    <string name="release_date_section">Release Date Section</string>
+    <string name="rating_section">Rating Section</string>
+    <string name="ratings_count_section">Ratings Count Section</string>
+    <string name="esrb_rating_section">ESRB Rating Section</string>
 </resources>
