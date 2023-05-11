@@ -112,7 +112,7 @@ fun DetailContent(
             }
             Button(
                 onClick = { onShareButtonClicked("$shareUrl${game.slug}") },
-                modifier = modifier
+                modifier = Modifier
                     .fillMaxWidth()
                     .height(48.dp),
             ) {

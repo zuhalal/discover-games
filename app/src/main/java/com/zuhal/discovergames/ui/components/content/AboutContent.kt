@@ -25,7 +25,7 @@ fun AboutContent(
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         AsyncImage(
-            model = "https://avatars.githubusercontent.com/u/74417769?v=4",
+            model = stringResource(R.string.profile_picture_link),
             contentDescription = stringResource(R.string.profile_image_content_desc),
             contentScale = ContentScale.Crop,
         )

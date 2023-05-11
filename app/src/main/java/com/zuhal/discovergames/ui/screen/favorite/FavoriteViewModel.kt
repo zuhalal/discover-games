@@ -1,5 +1,7 @@
 package com.zuhal.discovergames.ui.screen.favorite
 
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.zuhal.discovergames.data.GameRepository
@@ -16,6 +18,9 @@ class FavoriteViewModel(private val repository: GameRepository) : ViewModel() {
     val uiState: StateFlow<UiState<List<Game>>>
         get() = _uiState
 
+    private val _query = mutableStateOf("")
+    val query: State<String> get() = _query
+
     fun getAllFavoriteGames() {
         viewModelScope.launch {
             repository.getAllFavoriteGames()
@@ -28,8 +33,35 @@ class FavoriteViewModel(private val repository: GameRepository) : ViewModel() {
                             _uiState.value = UiState.Error(it.message.toString())
                         }
                         .collect { listGame ->
-                            listGame.filter { favGame.contains(FavoriteGameEntity(it.id)) }
-                            _uiState.value = UiState.Success(listGame)
+                            val filtered =
+                                listGame.filter { favGame.contains(FavoriteGameEntity(it.id)) }
+                            _uiState.value = UiState.Success(filtered)
+                        }
+                }
+        }
+    }
+
+    fun searchGames(query: String) {
+        _query.value = query
+        viewModelScope.launch {
+            repository.getAllFavoriteGames()
+                .catch {
+                    _uiState.value = UiState.Error(it.message.toString())
+                }
+                .collect { favGame ->
+                    repository.getAllGames()
+                        .catch {
+                            _uiState.value = UiState.Error(it.message.toString())
+                        }
+                        .collect { listGame ->
+                            val filtered =
+                                listGame.filter { favGame.contains(FavoriteGameEntity(it.id)) }
+                            _uiState.value = UiState.Success(filtered.filter {
+                                it.name.contains(
+                                    query,
+                                    ignoreCase = true
+                                )
+                            })
                         }
                 }
         }

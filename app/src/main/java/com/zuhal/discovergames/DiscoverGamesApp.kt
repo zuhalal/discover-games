@@ -22,6 +22,7 @@ import com.zuhal.discovergames.data.fake.models.Game
 import com.zuhal.discovergames.ui.navigation.Screen
 import com.zuhal.discovergames.ui.screen.about.AboutScreen
 import com.zuhal.discovergames.ui.screen.detail.DetailScreen
+import com.zuhal.discovergames.ui.screen.favorite.FavoriteScreen
 import com.zuhal.discovergames.ui.screen.home.HomeScreen
 import com.zuhal.discovergames.ui.theme.DiscoverGamesTheme
 
@@ -35,17 +36,17 @@ fun DiscoverGamesApp(
 
     Scaffold(
         topBar = {
-            if (currentRoute !== "Detail") {
+            if (currentRoute !== Screen.Detail.route) {
                 TopAppBar(
                     title = {
-                        if (currentRoute != null && currentRoute != "Home") {
+                        if (currentRoute != null && currentRoute != Screen.Home.route) {
                             Text(currentRoute)
                         } else {
                             Text(stringResource(id = R.string.app_name))
                         }
                     },
                     actions = {
-                        IconButton(onClick = { navController.navigate(Screen.About.route) }) {
+                        IconButton(onClick = { navController.navigate(Screen.Favorite.route) }) {
                             Icon(
                                 imageVector = Icons.Filled.Favorite,
                                 contentDescription = stringResource(R.string.my_favorite_games_page)
@@ -78,7 +79,7 @@ fun DiscoverGamesApp(
                 HomeScreen(
                     navigateToDetail = { game ->
                         navBackStackEntry?.savedStateHandle?.set("game", game)
-                        navController.navigate(Screen.DetailReward.route) {
+                        navController.navigate(Screen.Detail.route) {
                             launchSingleTop = true
                         }
                     }
@@ -86,7 +87,7 @@ fun DiscoverGamesApp(
             }
 
             composable(
-                route = Screen.DetailReward.route,
+                route = Screen.Detail.route,
             ) {
                 val game = navController.previousBackStackEntry?.savedStateHandle?.get<Game>("game")
                 game?.let {
@@ -100,6 +101,17 @@ fun DiscoverGamesApp(
 
             composable(Screen.About.route) {
                 AboutScreen()
+            }
+
+            composable(Screen.Favorite.route) {
+                FavoriteScreen(
+                    navigateToDetail = { game ->
+                        navBackStackEntry?.savedStateHandle?.set("game", game)
+                        navController.navigate(Screen.Detail.route) {
+                            launchSingleTop = true
+                        }
+                    }
+                )
             }
         }
     }
