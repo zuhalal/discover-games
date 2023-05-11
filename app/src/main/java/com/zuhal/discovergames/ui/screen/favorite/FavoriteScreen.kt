@@ -25,7 +25,7 @@ fun FavoriteScreen(
         when (uiState) {
             is UiState.Loading -> {
                 if (query !== "") {
-                    viewModel.searchGames(query)
+                    viewModel.searchFavoriteGames(query)
                 } else {
                     viewModel.getAllFavoriteGames()
                 }
@@ -36,7 +36,7 @@ fun FavoriteScreen(
                     modifier = modifier,
                     navigateToDetail = navigateToDetail,
                     query = query,
-                    onQueryChange = viewModel::searchGames
+                    onQueryChange = viewModel::searchFavoriteGames
                 )
             }
             is UiState.Error -> {}

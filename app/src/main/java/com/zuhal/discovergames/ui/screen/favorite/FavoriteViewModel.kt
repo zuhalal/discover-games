@@ -41,7 +41,7 @@ class FavoriteViewModel(private val repository: GameRepository) : ViewModel() {
         }
     }
 
-    fun searchGames(query: String) {
+    fun searchFavoriteGames(query: String) {
         _query.value = query
         viewModelScope.launch {
             repository.getAllFavoriteGames()
@@ -61,7 +61,8 @@ class FavoriteViewModel(private val repository: GameRepository) : ViewModel() {
                                     query,
                                     ignoreCase = true
                                 )
-                            })
+                            }
+                            )
                         }
                 }
         }
