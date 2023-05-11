@@ -24,7 +24,7 @@ fun HomeContent(
     onQueryChange: (String) -> Unit,
 ) {
     LazyColumn(
-        contentPadding = PaddingValues(28.dp),
+        contentPadding = PaddingValues(24.dp),
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(24.dp),
     ) {
@@ -33,12 +33,12 @@ fun HomeContent(
                 query = query,
                 onQueryChange = onQueryChange,
                 modifier = Modifier
-                    .padding(16.dp)
+                    .padding(horizontal = 0.dp, vertical = 16.dp)
             )
         }
         items(games, key = { it.id }) { data ->
             GameItem(
-                image = data.backgroundImage ?: "",
+                image = data.backgroundImage,
                 name = data.name,
                 rating = data.rating,
                 modifier = Modifier.clickable {

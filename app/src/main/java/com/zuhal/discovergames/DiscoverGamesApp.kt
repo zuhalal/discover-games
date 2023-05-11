@@ -4,9 +4,6 @@ import android.content.Context
 import android.content.Intent
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -50,26 +47,6 @@ fun DiscoverGamesApp(
                             Text(stringResource(id = R.string.app_name))
                         }
                     },
-                    actions = {
-                        IconButton(onClick = { navController.navigate(Screen.Favorite.route) }) {
-                            Icon(
-                                imageVector = Icons.Filled.Favorite,
-                                contentDescription = stringResource(R.string.my_favorite_games_page)
-                            )
-                        }
-                        IconButton(onClick = {
-                            navController.navigate(Screen.About.route) {
-                                launchSingleTop = true
-                            }
-                        }) {
-                            Icon(
-                                imageVector = Icons.Filled.Person,
-                                contentDescription = stringResource(
-                                    R.string.about_me_page
-                                )
-                            )
-                        }
-                    }
                 )
             }
         },
