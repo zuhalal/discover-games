@@ -24,4 +24,8 @@
     <string name="rating_section">Rating Section</string>
     <string name="ratings_count_section">Ratings Count Section</string>
     <string name="esrb_rating_section">ESRB Rating Section</string>
+    <string name="favorite_button">Favorite Button</string>
+    <string name="share_game_button">Share Game Button</string>
+    <string name="expandable_game_desc">Expandable text of the game description</string>
+    <string name="genre_row_content_desc">Genre row in game details</string>
 </resources>

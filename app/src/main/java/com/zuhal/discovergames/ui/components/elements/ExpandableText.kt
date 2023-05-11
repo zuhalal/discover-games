@@ -25,9 +25,8 @@ fun ExpandableText(
     var expanded by remember { mutableStateOf(false) }
 
     if (expanded) {
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = modifier) {
             Text(
-                modifier = modifier,
                 text = text,
                 textAlign = TextAlign.Start,
                 style = style
@@ -43,9 +42,8 @@ fun ExpandableText(
             }
         }
     } else {
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = modifier) {
             Text(
-                modifier = modifier,
                 text = text,
                 maxLines = maxLines,
                 overflow = TextOverflow.Ellipsis,

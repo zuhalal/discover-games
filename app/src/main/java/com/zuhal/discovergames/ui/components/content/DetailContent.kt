@@ -10,7 +10,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -36,6 +39,7 @@ fun DetailContent(
     isFavorite: Boolean = false,
     viewModel: DetailViewModel
 ) {
+    val context = LocalContext.current
     val configuration = LocalConfiguration.current
     val shareUrl = stringResource(id = R.string.share_url)
 
@@ -46,7 +50,7 @@ fun DetailContent(
         ImageCoveredBlackGradient(
             url = backgroundImage,
             contentDescription = stringResource(R.string.game_image_description),
-            height = if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) 280.dp else 400.dp
+            height = if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) 280.dp else 400.dp,
         )
         Column(
             modifier = Modifier
@@ -58,12 +62,17 @@ fun DetailContent(
                 text = name, style = MaterialTheme.typography.h4.copy(
                     textAlign = TextAlign.Center,
                     fontWeight = FontWeight.Bold
-                )
+                ),
             )
-            GameDetailGenreRow(genres = genres)
+            GameDetailGenreRow(genres = genres, modifier = Modifier.semantics(mergeDescendants = true) {
+                contentDescription = context.getString(R.string.genre_row_content_desc)
+            })
             ExpandableText(
                 text = description,
-                maxLines = 3
+                maxLines = 3,
+                modifier = Modifier.semantics(mergeDescendants = true) {
+                    contentDescription = context.getString(R.string.expandable_game_desc)
+                }
             )
             AdditionalGameDetail(
                 released = released,
@@ -78,12 +87,18 @@ fun DetailContent(
                 onClick = {
                     if (!isFavorite) viewModel.setIsFavorite(id)
                     else viewModel.removeFromFavorite(id)
+                },
+                modifier = Modifier.semantics(mergeDescendants = true) {
+                    contentDescription = context.getString(R.string.favorite_button)
                 }
             )
             PrimaryButton(
                 text = stringResource(id = R.string.share_game),
                 onClick = {
                     onShareButtonClicked("$shareUrl${slug}")
+                },
+                modifier = Modifier.semantics(mergeDescendants = true) {
+                    contentDescription = context.getString(R.string.share_game_button)
                 }
             )
         }
