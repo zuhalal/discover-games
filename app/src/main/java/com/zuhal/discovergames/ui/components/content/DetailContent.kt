@@ -15,14 +15,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.zuhal.discovergames.R
 import com.zuhal.discovergames.data.fake.models.Game
+import com.zuhal.discovergames.ui.components.elements.AdditionalGameDetail
 import com.zuhal.discovergames.ui.components.elements.ExpandableText
 import com.zuhal.discovergames.ui.components.elements.ImageCoveredBlackGradient
 
@@ -70,9 +69,9 @@ fun DetailContent(
                     )
                     if (index != game.genres.size - 1) {
                         Text(
-                            text=",",
+                            text = ",",
                             style = MaterialTheme.typography.subtitle1.copy(
-                                fontWeight=FontWeight.Bold
+                                fontWeight = FontWeight.Bold
                             )
                         )
                     }
@@ -82,18 +81,24 @@ fun DetailContent(
                 text = game.description,
                 maxLines = 3
             )
+            AdditionalGameDetail(
+                released = game.released,
+                rating = game.rating,
+                ratingsCount = game.ratingsCount,
+                esrbRating = game.esrbRating,
+                modifier = Modifier.height(100.dp)
+            )
             Button(
                 onClick = { onShareButtonClicked("$shareUrl${game.slug}") },
                 modifier = modifier
                     .fillMaxWidth()
-                    .height(52.dp),
+                    .height(48.dp),
             ) {
                 Text(
                     text = stringResource(id = R.string.share_game),
                     modifier = Modifier.align(Alignment.CenterVertically),
-                    style = TextStyle(
-                        color = Color.White,
-                        fontSize = 16.sp
+                    style = MaterialTheme.typography.button.copy(
+                        color = Color.White
                     )
                 )
             }

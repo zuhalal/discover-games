@@ -7,4 +7,7 @@
     <string name="share_url">https://rawg.io/games/</string>
     <string name="show_less">Show Less</string>
     <string name="show_more">Show More</string>
+    <string name="release_date">Release Date</string>
+    <string name="ratings_count">Ratings Count</string>
+    <string name="esrb_rating">ESRB Rating</string>
 </resources>
