@@ -13,8 +13,9 @@
     <string name="profile_name">Zuhal \'Alimul Hadi</string>
     <string name="profile_email">zuhalalimulhadi19@gmail.com</string>
     <string name="profile_image_content_desc">Profile Image</string>
-    <string name="about_me_page">About Me Page</string>
-    <string name="my_favorite_games_page">My Favorite Games Page</string>
+    <string name="about_me_page">About</string>
+    <string name="my_favorite_games_page">Favorite</string>
+    <string name="home_page">Home</string>
     <string name="search_game">Search your game here..</string>
     <string name="add_to_favorite">Add to Favorite</string>
     <string name="remove_from_favorite">Remove from Favorite</string>

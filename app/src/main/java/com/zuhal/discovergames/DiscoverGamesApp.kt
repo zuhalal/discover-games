@@ -25,7 +25,7 @@ import com.zuhal.discovergames.ui.screen.detail.DetailScreen
 import com.zuhal.discovergames.ui.screen.favorite.FavoriteScreen
 import com.zuhal.discovergames.ui.screen.home.HomeScreen
 import com.zuhal.discovergames.ui.theme.DiscoverGamesTheme
-
+import com.zuhal.discovergames.ui.components.elements.BottomBar
 @Composable
 fun DiscoverGamesApp(
     modifier: Modifier = Modifier,
@@ -35,6 +35,11 @@ fun DiscoverGamesApp(
     val currentRoute = navBackStackEntry?.destination?.route
 
     Scaffold(
+        bottomBar = {
+            if (currentRoute !== Screen.Detail.route) {
+                BottomBar(navController)
+            }
+        },
         topBar = {
             if (currentRoute !== Screen.Detail.route) {
                 TopAppBar(
