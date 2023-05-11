@@ -28,4 +28,6 @@
     <string name="share_game_button">Share Game Button</string>
     <string name="expandable_game_desc">Expandable text of the game description</string>
     <string name="genre_row_content_desc">Genre row in game details</string>
+    <string name="about_us_name_content_desc">Name of the app creator, Zuhal \'Alimul Hadi</string>
+    <string name="about_us_email_content_desc">Email of the creator app, zuhalalimulhadi19@gmail.com</string>
 </resources>

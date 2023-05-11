@@ -11,7 +11,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
@@ -21,6 +24,7 @@ import com.zuhal.discovergames.R
 fun AboutContent(
     modifier: Modifier = Modifier
 ) {
+    val context = LocalContext.current
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier.verticalScroll(rememberScrollState()),
@@ -35,12 +39,19 @@ fun AboutContent(
             text = stringResource(R.string.profile_name), style = MaterialTheme.typography.h5.copy(
                 fontWeight = FontWeight.Bold,
                 color = Color.White
-            )
+            ),
+            modifier = Modifier.semantics {
+                contentDescription = context.getString(R.string.about_us_name_content_desc)
+            }
         )
         Text(
-            text = stringResource(R.string.profile_email), style = MaterialTheme.typography.body1.copy(
+            text = stringResource(R.string.profile_email),
+            style = MaterialTheme.typography.body1.copy(
                 color = Color.White
-            )
+            ),
+            modifier = Modifier.semantics {
+                contentDescription = context.getString(R.string.about_us_email_content_desc)
+            }
         )
     }
 }
