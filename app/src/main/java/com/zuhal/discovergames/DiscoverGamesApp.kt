@@ -16,6 +16,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.zuhal.discovergames.data.fake.models.Game
 import com.zuhal.discovergames.ui.navigation.Screen
+import com.zuhal.discovergames.ui.screen.about.AboutScreen
 import com.zuhal.discovergames.ui.screen.detail.DetailScreen
 import com.zuhal.discovergames.ui.screen.home.HomeScreen
 import com.zuhal.discovergames.ui.theme.DiscoverGamesTheme
@@ -55,6 +56,10 @@ fun DiscoverGamesApp(
                         shareGame(context, slug)
                     })
                 }
+            }
+
+            composable(Screen.About.route) {
+                AboutScreen()
             }
         }
     }
