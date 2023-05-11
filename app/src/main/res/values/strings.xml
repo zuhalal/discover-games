@@ -10,4 +10,9 @@
     <string name="release_date">Release Date</string>
     <string name="ratings_count">Ratings Count</string>
     <string name="esrb_rating">ESRB Rating</string>
+    <string name="profile_name">Zuhal \'Alimul Hadi</string>
+    <string name="profile_email">zuhalalimulhadi19@gmail.com</string>
+    <string name="profile_image_content_desc">Profile Image</string>
+    <string name="about_me_page">About Me Page</string>
+    <string name="my_favorite_games_page">My Favorite Games Page</string>
 </resources>

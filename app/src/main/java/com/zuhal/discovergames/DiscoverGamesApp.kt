@@ -3,11 +3,15 @@ package com.zuhal.discovergames
 import android.content.Context
 import android.content.Intent
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Scaffold
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -27,8 +31,42 @@ fun DiscoverGamesApp(
     navController: NavHostController = rememberNavController(),
 ) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = navBackStackEntry?.destination?.route
 
     Scaffold(
+        topBar = {
+            if (currentRoute !== "Detail") {
+                TopAppBar(
+                    title = {
+                        if (currentRoute != null && currentRoute != "Home") {
+                            Text(currentRoute)
+                        } else {
+                            Text(stringResource(id = R.string.app_name))
+                        }
+                    },
+                    actions = {
+                        IconButton(onClick = { navController.navigate(Screen.About.route) }) {
+                            Icon(
+                                imageVector = Icons.Filled.Favorite,
+                                contentDescription = stringResource(R.string.my_favorite_games_page)
+                            )
+                        }
+                        IconButton(onClick = {
+                            navController.navigate(Screen.About.route) {
+                                launchSingleTop = true
+                            }
+                        }) {
+                            Icon(
+                                imageVector = Icons.Filled.Person,
+                                contentDescription = stringResource(
+                                    R.string.about_me_page
+                                )
+                            )
+                        }
+                    }
+                )
+            }
+        },
         modifier = modifier
     ) { innerPadding ->
         NavHost(
@@ -40,7 +78,9 @@ fun DiscoverGamesApp(
                 HomeScreen(
                     navigateToDetail = { game ->
                         navBackStackEntry?.savedStateHandle?.set("game", game)
-                        navController.navigate(Screen.DetailReward.route)
+                        navController.navigate(Screen.DetailReward.route) {
+                            launchSingleTop = true
+                        }
                     }
                 )
             }
