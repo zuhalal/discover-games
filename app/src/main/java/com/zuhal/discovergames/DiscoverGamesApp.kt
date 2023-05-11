@@ -23,6 +23,7 @@ import com.zuhal.discovergames.ui.screen.favorite.FavoriteScreen
 import com.zuhal.discovergames.ui.screen.home.HomeScreen
 import com.zuhal.discovergames.ui.theme.DiscoverGamesTheme
 import com.zuhal.discovergames.ui.components.elements.BottomBar
+
 @Composable
 fun DiscoverGamesApp(
     modifier: Modifier = Modifier,
@@ -40,13 +41,7 @@ fun DiscoverGamesApp(
         topBar = {
             if (currentRoute !== Screen.Detail.route) {
                 TopAppBar(
-                    title = {
-                        if (currentRoute != null && currentRoute != Screen.Home.route) {
-                            Text(currentRoute)
-                        } else {
-                            Text(stringResource(id = R.string.app_name))
-                        }
-                    },
+                    title = { Text(stringResource(id = R.string.app_name)) },
                 )
             }
         },
