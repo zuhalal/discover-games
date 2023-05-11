@@ -10,8 +10,6 @@ import com.zuhal.discovergames.di.Injection
 import com.zuhal.discovergames.ui.ViewModelFactory
 import com.zuhal.discovergames.ui.common.UiState
 import com.zuhal.discovergames.ui.components.content.DetailContent
-import com.zuhal.discovergames.ui.components.content.HomeContent
-import com.zuhal.discovergames.ui.screen.home.HomeViewModel
 
 @Composable
 fun DetailScreen(
