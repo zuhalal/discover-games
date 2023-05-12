@@ -11,5 +11,9 @@ import com.zuhal.discovergames.ui.components.content.AboutContent
 fun AboutScreen(
     modifier: Modifier = Modifier
 ) {
-    AboutContent(modifier.padding(28.dp).fillMaxWidth())
+    AboutContent(
+        modifier = modifier
+            .padding(28.dp)
+            .fillMaxWidth()
+    )
 }

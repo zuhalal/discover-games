@@ -15,11 +15,11 @@ import com.zuhal.discovergames.withDateFormat
 
 @Composable
 fun AdditionalGameDetail(
+    modifier: Modifier = Modifier,
     released: String,
     rating: Double,
     ratingsCount: Int,
     esrbRating: String,
-    modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
 

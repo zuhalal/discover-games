@@ -9,9 +9,9 @@ import androidx.compose.ui.text.font.FontWeight
 
 @Composable
 fun AdditionalGameDetailSection(
+    modifier: Modifier = Modifier,
     title: String,
     content: String,
-    modifier: Modifier = Modifier
 ) {
     Column(modifier = modifier) {
         Text(

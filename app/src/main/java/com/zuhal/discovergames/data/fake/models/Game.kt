@@ -7,36 +7,36 @@ import com.google.gson.annotations.SerializedName
 
 @Parcelize
 data class Game(
-	@field:SerializedName("id")
-	val id: Int,
+    @field:SerializedName("id")
+    val id: Int,
 
-	@field:SerializedName("slug")
-	val slug: String,
+    @field:SerializedName("slug")
+    val slug: String,
 
-	@field:SerializedName("name")
-	val name: String,
+    @field:SerializedName("name")
+    val name: String,
 
-	@field:SerializedName("released")
-	val released: String,
+    @field:SerializedName("released")
+    val released: String,
 
-	@field:SerializedName("description")
-	val description: String,
+    @field:SerializedName("description")
+    val description: String,
 
-	@JsonProperty("background_image")
-	@field:SerializedName("background_image")
-	val backgroundImage: String,
+    @JsonProperty("background_image")
+    @field:SerializedName("background_image")
+    val backgroundImage: String,
 
-	@JsonProperty("ratings_count")
-	@field:SerializedName("ratings_count")
-	val ratingsCount: Int,
+    @JsonProperty("ratings_count")
+    @field:SerializedName("ratings_count")
+    val ratingsCount: Int,
 
-	@JsonProperty("esrb_rating")
-	@field:SerializedName("esrb_rating")
-	val esrbRating: String,
+    @JsonProperty("esrb_rating")
+    @field:SerializedName("esrb_rating")
+    val esrbRating: String,
 
-	@field:SerializedName("rating")
-	val rating: Double,
+    @field:SerializedName("rating")
+    val rating: Double,
 
-	@field:SerializedName("genres")
-	val genres: List<Genre>,
+    @field:SerializedName("genres")
+    val genres: List<Genre>,
 ) : Parcelable

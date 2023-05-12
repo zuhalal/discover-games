@@ -10,8 +10,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 
-class DetailViewModel(private val repository: GameRepository): ViewModel() {
-    private val _isFavoriteState: MutableStateFlow<UiState<Boolean>> = MutableStateFlow(UiState.Loading)
+class DetailViewModel(private val repository: GameRepository) : ViewModel() {
+    private val _isFavoriteState: MutableStateFlow<UiState<Boolean>> =
+        MutableStateFlow(UiState.Loading)
     val isFavoriteState: StateFlow<UiState<Boolean>>
         get() = _isFavoriteState
 
@@ -19,7 +20,7 @@ class DetailViewModel(private val repository: GameRepository): ViewModel() {
         viewModelScope.launch {
             repository.isGameFavorite(id).catch {
                 _isFavoriteState.value = UiState.Error(it.message.toString())
-            }.collect{
+            }.collect {
                 _isFavoriteState.value = UiState.Success(it)
             }
         }

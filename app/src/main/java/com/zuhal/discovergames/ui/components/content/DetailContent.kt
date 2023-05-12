@@ -29,6 +29,7 @@ import com.zuhal.discovergames.ui.screen.detail.DetailViewModel
 
 @Composable
 fun DetailContent(
+    modifier: Modifier = Modifier,
     id: Int,
     slug: String,
     name: String,
@@ -39,7 +40,6 @@ fun DetailContent(
     ratingsCount: Int,
     rating: Double,
     esrbRating: String,
-    modifier: Modifier = Modifier,
     onShareButtonClicked: (String) -> Unit,
     onBackClick: () -> Unit,
     isFavorite: Boolean = false,

@@ -28,8 +28,8 @@ import com.zuhal.discovergames.ui.theme.DiscoverGamesTheme
 
 @Composable
 fun HomeContent(
-    games: List<Game>,
     modifier: Modifier = Modifier,
+    games: List<Game>,
     navigateToDetail: (Game) -> Unit,
     query: String,
     onQueryChange: (String) -> Unit,

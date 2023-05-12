@@ -45,7 +45,8 @@ class DiscoverGamesAppTest {
 
     @Test
     fun navHost_clickItem_navigatesToDetailWithData() {
-        composeTestRule.onNodeWithTag(composeTestRule.activity.getString(R.string.game_list)).performScrollToIndex(11)
+        composeTestRule.onNodeWithTag(composeTestRule.activity.getString(R.string.game_list))
+            .performScrollToIndex(11)
         composeTestRule.onNodeWithText(FakeGameDataSource.listGame[11].name).performClick()
         navController.assertCurrentRouteName(Screen.Detail.route)
         composeTestRule.onNodeWithText(FakeGameDataSource.listGame[11].name).assertIsDisplayed()
@@ -211,9 +212,12 @@ class DiscoverGamesAppTest {
         navController.assertCurrentRouteName(Screen.About.route)
 
         // Assert
-        composeTestRule.onNodeWithContentDescription(composeTestRule.activity.getString(R.string.about_us_name_content_desc)).assertExists()
-        composeTestRule.onNodeWithContentDescription(composeTestRule.activity.getString(R.string.about_us_email_content_desc)).assertExists()
-        composeTestRule.onNodeWithContentDescription(composeTestRule.activity.getString(R.string.profile_image_content_desc)).assertExists()
+        composeTestRule.onNodeWithContentDescription(composeTestRule.activity.getString(R.string.about_us_name_content_desc))
+            .assertExists()
+        composeTestRule.onNodeWithContentDescription(composeTestRule.activity.getString(R.string.about_us_email_content_desc))
+            .assertExists()
+        composeTestRule.onNodeWithContentDescription(composeTestRule.activity.getString(R.string.profile_image_content_desc))
+            .assertExists()
     }
 
     @Test
