@@ -38,7 +38,7 @@ class DiscoverGamesAppTest {
 
     @Test
     fun navHost_clickItem_navigatesToDetailWithData() {
-        composeTestRule.onNodeWithTag("GameList").performScrollToIndex(11)
+        composeTestRule.onNodeWithTag(composeTestRule.activity.getString(R.string.game_list)).performScrollToIndex(11)
         composeTestRule.onNodeWithText(FakeGameDataSource.listGame[11].name).performClick()
         navController.assertCurrentRouteName(Screen.Detail.route)
         composeTestRule.onNodeWithText(FakeGameDataSource.listGame[11].name).assertIsDisplayed()
@@ -132,7 +132,7 @@ class DiscoverGamesAppTest {
         composeTestRule.onNodeWithContentDescription(composeTestRule.activity.getString(R.string.search_bar))
             .performTextClearance()
         composeTestRule.onNodeWithContentDescription(composeTestRule.activity.getString(R.string.search_bar))
-            .performTextInput("grand")
+            .performTextInput(composeTestRule.activity.getString(R.string.existing_game))
 
         composeTestRule.onNodeWithTag(composeTestRule.activity.getString(R.string.game_list))
             .performScrollToIndex(0)
@@ -145,7 +145,7 @@ class DiscoverGamesAppTest {
         composeTestRule.onNodeWithContentDescription(composeTestRule.activity.getString(R.string.search_bar))
             .performTextClearance()
         composeTestRule.onNodeWithContentDescription(composeTestRule.activity.getString(R.string.search_bar))
-            .performTextInput("abcdefghi")
+            .performTextInput(composeTestRule.activity.getString(R.string.not_existing_game))
 
         composeTestRule.onNodeWithTag(composeTestRule.activity.getString(R.string.not_found_tag))
             .assertExists()

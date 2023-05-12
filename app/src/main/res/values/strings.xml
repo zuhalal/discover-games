@@ -38,4 +38,6 @@
     <string name="description_detail_tag">DescriptionGameDetail</string>
     <string name="game_not_found">Game not found</string>
     <string name="not_found_tag">NotFound</string>
+    <string name="not_existing_game">abcdefghi</string>
+    <string name="existing_game">grand</string>
 </resources>
