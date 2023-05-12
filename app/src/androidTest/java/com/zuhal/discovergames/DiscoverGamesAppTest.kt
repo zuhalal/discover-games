@@ -115,6 +115,23 @@ class DiscoverGamesAppTest {
     }
 
     @Test
+    fun search_existing_game() {
+        composeTestRule.onNodeWithContentDescription(composeTestRule.activity.getString(R.string.search_bar)).performTextClearance()
+        composeTestRule.onNodeWithContentDescription(composeTestRule.activity.getString(R.string.search_bar)).performTextInput("grand")
+
+        composeTestRule.onNodeWithTag("GameList").performScrollToIndex(0)
+        composeTestRule.onNodeWithText(FakeGameDataSource.listGame[0].name).assertTextContains(FakeGameDataSource.listGame[0].name)
+    }
+
+//    @Test
+//    fun search_not_existing_game() {
+//        composeTestRule.onNodeWithContentDescription(composeTestRule.activity.getString(R.string.search_bar)).performTextClearance()
+//        composeTestRule.onNodeWithContentDescription(composeTestRule.activity.getString(R.string.search_bar)).performTextInput("asdef")
+//
+//        composeTestRule.onNodeWithTag("GameList").performScrollToIndex(0)
+//    }
+
+    @Test
     fun navHost_checkout_rightBackStack_after_click_about_twice() {
         composeTestRule.onNodeWithStringId(R.string.about_me_page).performClick()
         navController.assertCurrentRouteName(Screen.About.route)
