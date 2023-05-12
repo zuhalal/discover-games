@@ -18,7 +18,7 @@ fun DetailScreen(
     onShareButtonClicked: (String) -> Unit,
     navigateBack: () -> Unit,
     viewModel: DetailViewModel = viewModel(
-        factory = ViewModelFactory(Injection.provideRepository(LocalContext.current))
+        factory = ViewModelFactory.getInstance(LocalContext.current)
     ),
 ) {
     viewModel.isFavoriteState.collectAsState(initial = UiState.Loading).value.let { isFavorite ->

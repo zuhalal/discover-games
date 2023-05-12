@@ -16,7 +16,7 @@ import com.zuhal.discovergames.ui.components.content.HomeContent
 fun HomeScreen(
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = viewModel(
-        factory = ViewModelFactory(Injection.provideRepository(LocalContext.current))
+        factory = ViewModelFactory.getInstance(LocalContext.current)
     ),
     navigateToDetail: (Game) -> Unit,
 ) {
