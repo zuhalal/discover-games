@@ -6,13 +6,18 @@ import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.navigation.compose.ComposeNavigator
 import androidx.navigation.testing.TestNavHostController
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.filters.LargeTest
 import com.zuhal.discovergames.data.fake.FakeGameDataSource
 import com.zuhal.discovergames.ui.navigation.Screen
 import com.zuhal.discovergames.ui.theme.DiscoverGamesTheme
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.junit.runner.RunWith
 
+@RunWith(AndroidJUnit4::class)
+@LargeTest
 class DiscoverGamesAppTest {
     @get:Rule
     val composeTestRule = createAndroidComposeRule<ComponentActivity>()
@@ -75,11 +80,9 @@ class DiscoverGamesAppTest {
         composeTestRule.onNodeWithText(FakeGameDataSource.listGame[0].name).performClick()
         navController.assertCurrentRouteName(Screen.Detail.route)
 
-        // start favorite
+        // start add to favorite
         composeTestRule.onNodeWithContentDescription(composeTestRule.activity.getString(R.string.favorite_button))
             .performScrollTo()
-        composeTestRule.onNodeWithContentDescription(composeTestRule.activity.getString(R.string.favorite_button))
-            .performClick()
 
         try {
             composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.remove_from_favorite))
@@ -128,6 +131,55 @@ class DiscoverGamesAppTest {
     }
 
     @Test
+    fun favorite_Item_then_SearchFavorite() {
+        composeTestRule.onNodeWithTag(composeTestRule.activity.getString(R.string.game_list))
+            .performScrollToIndex(0)
+        composeTestRule.onNodeWithText(FakeGameDataSource.listGame[0].name).performClick()
+        navController.assertCurrentRouteName(Screen.Detail.route)
+
+        // start favorite
+        composeTestRule.onNodeWithContentDescription(composeTestRule.activity.getString(R.string.favorite_button))
+            .performScrollTo()
+
+        try {
+            composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.remove_from_favorite))
+                .assertExists()
+        } catch (e: AssertionError) {
+            composeTestRule.onNodeWithContentDescription(composeTestRule.activity.getString(R.string.favorite_button))
+                .performClick()
+            composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.remove_from_favorite))
+                .assertExists()
+        }
+
+        composeTestRule.activityRule.scenario.onActivity { activity ->
+            activity.onBackPressedDispatcher.onBackPressed()
+        }
+
+        composeTestRule.onNodeWithStringId(R.string.my_favorite_games_page).performClick()
+        navController.assertCurrentRouteName(Screen.Favorite.route)
+
+        // Search existing favorite games (Positive Case)
+        composeTestRule.onNodeWithContentDescription(composeTestRule.activity.getString(R.string.search_bar))
+            .performTextClearance()
+        composeTestRule.onNodeWithContentDescription(composeTestRule.activity.getString(R.string.search_bar))
+            .performTextInput(composeTestRule.activity.getString(R.string.existing_game))
+
+        composeTestRule.onNodeWithTag(composeTestRule.activity.getString(R.string.game_list))
+            .performScrollToIndex(0)
+        composeTestRule.onNodeWithText(FakeGameDataSource.listGame[0].name)
+            .assertTextContains(FakeGameDataSource.listGame[0].name)
+
+        // Search not existing favorite game (Negative Case)
+        composeTestRule.onNodeWithContentDescription(composeTestRule.activity.getString(R.string.search_bar))
+            .performTextClearance()
+        composeTestRule.onNodeWithContentDescription(composeTestRule.activity.getString(R.string.search_bar))
+            .performTextInput(composeTestRule.activity.getString(R.string.not_existing_game))
+
+        composeTestRule.onNodeWithTag(composeTestRule.activity.getString(R.string.not_found_tag))
+            .assertExists()
+    }
+
+    @Test
     fun search_existing_game() {
         composeTestRule.onNodeWithContentDescription(composeTestRule.activity.getString(R.string.search_bar))
             .performTextClearance()
@@ -152,7 +204,7 @@ class DiscoverGamesAppTest {
     }
 
     @Test
-    fun positive_navigate_to_about_and_display_correct_information() {
+    fun navigate_to_about_and_display_correct_information() {
         composeTestRule.onNodeWithStringId(R.string.about_me_page).performClick()
         navController.assertCurrentRouteName(Screen.About.route)
 

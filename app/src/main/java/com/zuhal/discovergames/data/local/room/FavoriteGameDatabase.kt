@@ -18,7 +18,7 @@ abstract class FavoriteGameDatabase : RoomDatabase() {
                 instance ?: Room.databaseBuilder(
                     context.applicationContext,
                     FavoriteGameDatabase::class.java, "FavoriteGame.db"
-                ).fallbackToDestructiveMigration().build()
+                ).build()
             }
     }
 }
