@@ -69,7 +69,7 @@ class DiscoverGamesAppTest {
     }
 
     @Test
-    fun navHost_Favorite_Item_then_RemoveFavorite() {
+    fun favorite_Item_then_RemoveFavorite() {
         composeTestRule.onNodeWithTag(composeTestRule.activity.getString(R.string.game_list))
             .performScrollToIndex(0)
         composeTestRule.onNodeWithText(FakeGameDataSource.listGame[0].name).performClick()
@@ -141,7 +141,7 @@ class DiscoverGamesAppTest {
     }
 
     @Test
-    fun search_not_existing_game() {
+    fun negative_search_not_existing_game() {
         composeTestRule.onNodeWithContentDescription(composeTestRule.activity.getString(R.string.search_bar))
             .performTextClearance()
         composeTestRule.onNodeWithContentDescription(composeTestRule.activity.getString(R.string.search_bar))
@@ -152,7 +152,18 @@ class DiscoverGamesAppTest {
     }
 
     @Test
-    fun rightBackStack_after_click_about_twice() {
+    fun positive_navigate_to_about_and_display_correct_information() {
+        composeTestRule.onNodeWithStringId(R.string.about_me_page).performClick()
+        navController.assertCurrentRouteName(Screen.About.route)
+
+        // Assert
+        composeTestRule.onNodeWithContentDescription(composeTestRule.activity.getString(R.string.about_us_name_content_desc)).assertExists()
+        composeTestRule.onNodeWithContentDescription(composeTestRule.activity.getString(R.string.about_us_email_content_desc)).assertExists()
+        composeTestRule.onNodeWithContentDescription(composeTestRule.activity.getString(R.string.profile_image_content_desc)).assertExists()
+    }
+
+    @Test
+    fun negative_rightBackStack_after_click_about_twice() {
         composeTestRule.onNodeWithStringId(R.string.about_me_page).performClick()
         navController.assertCurrentRouteName(Screen.About.route)
 
