@@ -1,4 +1,4 @@
-package com.zuhal.discovergames
+package com.zuhal.discovergames.utils
 
 import androidx.navigation.NavController
 import org.junit.Assert

@@ -11,6 +11,8 @@ import androidx.test.filters.LargeTest
 import com.zuhal.discovergames.data.fake.FakeGameDataSource
 import com.zuhal.discovergames.ui.navigation.Screen
 import com.zuhal.discovergames.ui.theme.DiscoverGamesTheme
+import com.zuhal.discovergames.utils.assertCurrentRouteName
+import com.zuhal.discovergames.utils.onNodeWithStringId
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test

@@ -13,10 +13,10 @@ import coil.compose.AsyncImage
 
 @Composable
 fun ImageCoveredBlackGradient(
+    modifier: Modifier = Modifier,
     url: String,
     contentDescription: String,
     contentScale: ContentScale = ContentScale.Crop,
-    modifier: Modifier = Modifier,
     height: Dp
 ) {
     AsyncImage(

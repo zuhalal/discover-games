@@ -1,4 +1,4 @@
-package com.zuhal.discovergames
+package com.zuhal.discovergames.utils
 
 import androidx.activity.ComponentActivity
 import androidx.annotation.StringRes
