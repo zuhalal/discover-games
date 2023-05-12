@@ -9,6 +9,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
@@ -28,9 +30,10 @@ fun HomeContent(
     onQueryChange: (String) -> Unit,
 ) {
     val context = LocalContext.current
+
     LazyColumn(
         contentPadding = PaddingValues(24.dp),
-        modifier = modifier,
+        modifier = modifier.testTag(stringResource(R.string.game_list)),
         verticalArrangement = Arrangement.spacedBy(24.dp),
     ) {
         item {

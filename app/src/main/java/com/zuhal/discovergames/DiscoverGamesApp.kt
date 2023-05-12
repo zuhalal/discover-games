@@ -70,9 +70,13 @@ fun DiscoverGamesApp(
                 game?.let {
                     val context = LocalContext.current
 
-                    DetailScreen(game, onShareButtonClicked = { slug ->
-                        shareGame(context, slug)
-                    })
+                    DetailScreen(
+                        game = game,
+                        navigateBack = { navController.navigateUp() },
+                        onShareButtonClicked = { slug ->
+                            shareGame(context, slug)
+                        }
+                    )
                 }
             }
 

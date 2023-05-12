@@ -16,6 +16,7 @@ fun DetailScreen(
     game: Game,
     modifier: Modifier = Modifier,
     onShareButtonClicked: (String) -> Unit,
+    navigateBack: () -> Unit,
     viewModel: DetailViewModel = viewModel(
         factory = ViewModelFactory(Injection.provideRepository(LocalContext.current))
     ),
@@ -40,7 +41,8 @@ fun DetailScreen(
                     modifier = modifier,
                     onShareButtonClicked = onShareButtonClicked,
                     isFavorite = isFavorite.data,
-                    viewModel = viewModel
+                    viewModel = viewModel,
+                    onBackClick = navigateBack
                 )
             }
             is UiState.Error -> {}
