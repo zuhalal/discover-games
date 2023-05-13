@@ -41,7 +41,7 @@ fun AboutContent(
                 color = Color.White
             ),
             modifier = Modifier.semantics {
-                contentDescription = context.getString(R.string.about_us_name_content_desc)
+                contentDescription = context.getString(R.string.about_page_name_content_desc)
             }
         )
         Text(
@@ -50,7 +50,7 @@ fun AboutContent(
                 color = Color.White
             ),
             modifier = Modifier.semantics {
-                contentDescription = context.getString(R.string.about_us_email_content_desc)
+                contentDescription = context.getString(R.string.about_page_email_content_desc)
             }
         )
     }

@@ -57,7 +57,7 @@ class DiscoverGamesAppTest {
         composeTestRule.onNodeWithStringId(R.string.my_favorite_games_page).performClick()
         navController.assertCurrentRouteName(Screen.Favorite.route)
 
-        composeTestRule.onNodeWithStringId(R.string.about_me_page).performClick()
+        composeTestRule.onNodeWithStringId(R.string.about_page).performClick()
         navController.assertCurrentRouteName(Screen.About.route)
 
         composeTestRule.onNodeWithStringId(R.string.home_page).performClick()
@@ -208,13 +208,13 @@ class DiscoverGamesAppTest {
 
     @Test
     fun navigate_to_about_and_display_correct_information() {
-        composeTestRule.onNodeWithStringId(R.string.about_me_page).performClick()
+        composeTestRule.onNodeWithStringId(R.string.about_page).performClick()
         navController.assertCurrentRouteName(Screen.About.route)
 
         // Assert
-        composeTestRule.onNodeWithContentDescription(composeTestRule.activity.getString(R.string.about_us_name_content_desc))
+        composeTestRule.onNodeWithContentDescription(composeTestRule.activity.getString(R.string.about_page_name_content_desc))
             .assertExists()
-        composeTestRule.onNodeWithContentDescription(composeTestRule.activity.getString(R.string.about_us_email_content_desc))
+        composeTestRule.onNodeWithContentDescription(composeTestRule.activity.getString(R.string.about_page_email_content_desc))
             .assertExists()
         composeTestRule.onNodeWithContentDescription(composeTestRule.activity.getString(R.string.profile_image_content_desc))
             .assertExists()
@@ -222,10 +222,10 @@ class DiscoverGamesAppTest {
 
     @Test
     fun negative_rightBackStack_after_click_about_twice() {
-        composeTestRule.onNodeWithStringId(R.string.about_me_page).performClick()
+        composeTestRule.onNodeWithStringId(R.string.about_page).performClick()
         navController.assertCurrentRouteName(Screen.About.route)
 
-        composeTestRule.onNodeWithStringId(R.string.about_me_page).performClick()
+        composeTestRule.onNodeWithStringId(R.string.about_page).performClick()
         navController.assertCurrentRouteName(Screen.About.route)
 
         composeTestRule.activityRule.scenario.onActivity { activity ->

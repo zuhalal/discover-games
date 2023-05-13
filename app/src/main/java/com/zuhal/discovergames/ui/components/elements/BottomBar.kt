@@ -31,17 +31,20 @@ fun BottomBar(
             NavigationItem(
                 title = stringResource(R.string.home_page),
                 icon = Icons.Default.Home,
-                screen = Screen.Home
+                screen = Screen.Home,
+                contentDescription = stringResource(R.string.home_page_content_desc)
             ),
             NavigationItem(
                 title = stringResource(R.string.my_favorite_games_page),
                 icon = Icons.Default.Favorite,
-                screen = Screen.Favorite
+                screen = Screen.Favorite,
+                contentDescription = stringResource(R.string.my_favorite_games_page_content_desc)
             ),
             NavigationItem(
-                title = stringResource(R.string.about_me_page),
+                title = stringResource(R.string.about_page),
                 icon = Icons.Default.Person,
-                screen = Screen.About
+                screen = Screen.About,
+                contentDescription = stringResource(R.string.about_page_content_desc)
             ),
         )
         BottomNavigation {
@@ -50,7 +53,7 @@ fun BottomBar(
                     icon = {
                         Icon(
                             imageVector = item.icon,
-                            contentDescription = item.title
+                            contentDescription = item.contentDescription
                         )
                     },
                     label = { Text(item.title) },
